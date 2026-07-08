@@ -1,0 +1,30 @@
+{
+  "name": "cse340-course",
+  "version": "1.0.0",
+  "description": "",
+  "homepage": "https://github.com/SimonMukonda/cse340-course#readme",
+  "bugs": {
+    "url": "https://github.com/SimonMukonda/cse340-course/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SimonMukonda/cse340-course.git"
+  },
+  "license": "ISC",
+  "author": "Simon Mukonda",
+  "type": "module",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js",
+    "dev": "nodemon"
+  },
+  "dependencies": {
+    "dotenv": "^17.4.2",
+    "ejs": "^6.0.1",
+    "express": "^5.2.1"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.14"
+  }
+}
