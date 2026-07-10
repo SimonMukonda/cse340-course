@@ -4,6 +4,9 @@ import { fileURLToPath } from 'url';
 import path from 'path';
 import { testConnection } from './src/models/db.js';
 import { getAllOrganizations } from './src/models/organizations.js'; 
+import { getAllProjects } from './src/models/projects.js'; 
+import { getAllCategories } from './src/models/categories.js';
+
 
 dotenv.config();
 const app = express();
@@ -43,14 +46,23 @@ app.get('/organizations', async (req, res) => {
 });
 
 app.get('/projects', async (req, res) => {
+  try {
+    const projects = await getAllProjects();
     const title = 'Service Projects';
-    res.render('projects', { title });
+    res.render('projects', { title, projects });
+  } catch (error) {
+    res.status(500).send('Error loading projects');
+  }
 });
 
-
 app.get('/categories', async (req, res) => {
-  const title = 'Service Categories';
-  res.render('categories', { title });
+  try {
+    const categories = await getAllCategories();
+    const title = 'Service Categories';
+    res.render('categories', { title, categories });
+  } catch (error) {
+    res.status(500).send('Error loading categories');
+  }
 });
 
 
