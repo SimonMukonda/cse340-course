@@ -37,6 +37,18 @@ VALUES
 Select * From project;
 
 
+
+UPDATE project SET date = '2026-08-01' WHERE project_id = 1;
+UPDATE project SET date = '2026-08-10' WHERE project_id = 2;
+UPDATE project SET date = '2026-08-15' WHERE project_id = 3;
+UPDATE project SET date = '2026-08-20' WHERE project_id = 4;
+UPDATE project SET date = '2026-08-25' WHERE project_id = 5;
+
+-- /// update the data 
+
+
+
+
 CREATE TABLE category (
     category_id SERIAL PRIMARY KEY,
     name VARCHAR(150) NOT NULL
