@@ -8,6 +8,9 @@
     <p>Description: <%= organizationDetails.description %></p>
     <p>Contact: <%= organizationDetails.contact_email %></p>
 
+    <!-- Edit link -->
+    <p><a href="/edit-organization/<%= organizationDetails.organization_id %>">Edit Organization</a></p>
+
     <h3>Service Projects</h3>
     <ul>
         <% projects.forEach(project => { %>
@@ -18,4 +21,4 @@
         <% }) %>
     </ul>
 </main>
-<%- include('partials/footer') %> 
+<%- include('partials/footer') %>

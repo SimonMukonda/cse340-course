@@ -106,3 +106,147 @@ footer {
     padding: 1rem;
   }
 }
+
+
+/* =========================
+   RESET + BASE LAYOUT
+========================= */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  height: 100%;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  font-family: Arial, sans-serif;
+  background-color: lightblue;
+  color: #333;
+}
+
+/* =========================
+   HEADER
+========================= */
+header {
+  background: #2c3e50;
+  color: white;
+  padding: 1.5rem 2rem; /* 🔥 more space */
+}
+
+/* =========================
+   NAVIGATION
+========================= */
+nav ul {
+  list-style: none;
+  display: flex;              
+  gap: 25px;                  
+  padding: 0;
+  margin-top: 10px;
+}
+
+nav a {
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 1.1rem;          
+  padding: 6px 10px;          
+  border-radius: 5px;
+  transition: background 0.2s ease;
+}
+
+nav a:hover {
+  background: rgba(255, 255, 255, 0.2); 
+}
+
+/* =========================
+   MAIN CONTENT
+========================= */
+main {
+  flex: 1;
+  padding: 2.5rem 2rem; 
+}
+
+/* =========================
+   LISTS
+========================= */
+ul {
+  margin-top: 1rem;
+  padding-left: 20px;
+}
+
+/* =========================
+   ORGANIZATION ITEMS
+========================= */
+li {
+  margin-bottom: 15px;
+}
+
+li img {
+  vertical-align: middle;
+  margin-right: 10px;
+}
+
+/* =========================
+   FOOTER
+========================= */
+footer {
+  background: #2c3e50;
+  color: white;
+  text-align: center;
+  padding: 1.5rem;     
+  font-size: 1rem;     
+}
+
+/* =========================
+   RESPONSIVE DESIGN
+========================= */
+@media (max-width: 600px) {
+  nav li {
+    display: block;
+    margin: 10px 0;
+  }
+
+  main {
+    padding: 1rem;
+  }
+}
+
+/* =========================
+   FLASH MESSAGES
+========================= */
+.alert {
+  padding: 15px;
+  margin: 20px 0;
+  border: 1px solid transparent;
+  border-radius: 4px;
+  font-weight: bold;
+}
+
+.alert.success {
+  color: #155724;
+  background-color: #d4edda;
+  border-color: #c3e6cb;
+}
+
+.alert.error {
+  color: #721c24;
+  background-color: #f8d7da;
+  border-color: #f5c6cb;
+}
+
+.alert.warning {
+  color: #856404;
+  background-color: #fff3cd;
+  border-color: #ffeeba;
+}
+
+.alert.info {
+  color: #0c5460;
+  background-color: #d1ecf1;
+  border-color: #bee5eb;
+}

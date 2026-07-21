@@ -4,6 +4,8 @@ import { fileURLToPath } from 'url';
 import path from 'path';
 import { testConnection } from './src/models/db.js';
 import router from './src/routes.js';
+import session from 'express-session';
+import flash from './src/middleware/flash.js'; 
 
 dotenv.config();
 
@@ -18,12 +20,30 @@ const __dirname = path.dirname(__filename);
 
 const app = express();
 
+
 /**
   * Configure Express middleware
   */
 
+// Session management middleware
+const SESSION_SECRET = process.env.SESSION_SECRET;
+app.use(session({
+    secret: SESSION_SECRET,
+    resave: false,
+    saveUninitialized: true,
+    cookie: { maxAge: 60 * 60 * 1000 } // 1 hour
+}));
+
+// 👉 Add body parsers here
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
+
+// flash middleware
+app.use(flash);
+
 // Serve static files from the public directory
 app.use(express.static(path.join(__dirname, 'public')));
+
 
 // Set EJS as the templating engine
 app.set('view engine', 'ejs');
@@ -36,7 +56,7 @@ app.use((req, res, next) => {
     if (NODE_ENV === 'development') {
         console.log(`${req.method} ${req.url}`);
     }
-    next(); // Pass control to the next middleware or route
+    next();
 });
 
 // Middleware to make NODE_ENV available to all templates
@@ -57,22 +77,18 @@ app.use((req, res, next) => {
 
 // Global error handler
 app.use((err, req, res, next) => {
-    // Log error details for debugging
     console.error('Error occurred:', err.message);
     console.error('Stack trace:', err.stack);
     
-    // Determine status and template
     const status = err.status || 500;
     const template = status === 404 ? '404' : '500';
     
-    // Prepare data for the template
     const context = {
         title: status === 404 ? 'Page Not Found' : 'Server Error',
         error: err.message,
         stack: err.stack
     };
     
-    // Render the appropriate error template
     res.status(status).render(`errors/${template}`, context);
 });
 
